@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "MOTOR-MEDS"
+dynamic = ["version"]
+authors = [
+  { name="Matthew McDermott", email="mattmcdermott8@gmail.com" },
+]
+description = "A MEDS & MEDS-DEV compliant package for training MOTOR style models."
+readme = "README.md"
+requires-python = "~=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: Pytest",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "meds==0.3.3", "meds_reader==0.1.9", "hydra-core", "xformers"
+  #"git+https://github.com/som-shahlab/femr@mimic_tutorial", # Not supported by PEP 508.
+]
+
+[project.optional-dependencies]
+dev = ["pre-commit<4"]
+tests = ["pytest", "pytest-cov", "meds_testing_helpers"]
+
+[tool.setuptools_scm]
+
+[project.scripts]
+pretrain_model = "MOTOR_MEDS.pretrain:main"
+fine_tune_model = "MOTOR_MEDS.fine_tune:main"
+predict = "MOTOR_MEDS.predict:main"
+
+[project.urls]
+Homepage = "https://github.com/mmcdermott/MOTOR_MEDS"
+Issues = "https://github.com/mmcdermott/MOTOR_MEDS/issues"
+
+[tool.pytest.ini_options]
+addopts = [
+  "--color=yes",
+  "--doctest-modules",
+  "--ignore=docs",
+]

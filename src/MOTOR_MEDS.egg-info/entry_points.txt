@@ -1,0 +1,4 @@
+[console_scripts]
+fine_tune_model = MOTOR_MEDS.fine_tune:main
+predict = MOTOR_MEDS.predict:main
+pretrain_model = MOTOR_MEDS.pretrain:main

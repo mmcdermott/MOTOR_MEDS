@@ -1,0 +1,12 @@
+meds==0.3.3
+meds_reader==0.1.9
+hydra-core
+xformers
+
+[dev]
+pre-commit<4
+
+[tests]
+pytest
+pytest-cov
+meds_testing_helpers
