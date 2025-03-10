@@ -18,7 +18,7 @@ following steps:
 ## Step 1: Installation
 ```bash
 pip install motor-meds
-pip install git+https://github.com/som-shahlab/femr@mimic_tutorial
+pip install git+https://github.com/som-shahlab/femr@meds_v3
 ```
 
 ## Step 2: Download the ATHENA files

@@ -19,7 +19,7 @@ classifiers = [
 ]
 dependencies = [
   "meds==0.3.3", "meds_reader==0.1.9", "hydra-core", "xformers"
-  #"git+https://github.com/som-shahlab/femr@mimic_tutorial", # Not supported by PEP 508.
+  #"git+https://github.com/som-shahlab/femr@meds_v3", # Not supported by PEP 508.
 ]
 
 [project.optional-dependencies]

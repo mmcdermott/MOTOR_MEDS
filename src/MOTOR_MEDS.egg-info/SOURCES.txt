@@ -1,6 +1,11 @@
+.pre-commit-config.yaml
 LICENSE
 README.md
 pyproject.toml
+.github/workflows/code-quality-main.yaml
+.github/workflows/code-quality-pr.yaml
+.github/workflows/python-build.yaml
+.github/workflows/tests.yaml
 src/MOTOR_MEDS/__init__.py
 src/MOTOR_MEDS/fine_tune.py
 src/MOTOR_MEDS/predict.py
@@ -12,3 +17,6 @@ src/MOTOR_MEDS.egg-info/entry_points.txt
 src/MOTOR_MEDS.egg-info/requires.txt
 src/MOTOR_MEDS.egg-info/top_level.txt
 src/MOTOR_MEDS/configs/__init__.py
+src/MOTOR_MEDS/configs/finetune.yaml
+src/MOTOR_MEDS/configs/predict.yaml
+src/MOTOR_MEDS/configs/pretrain.yaml

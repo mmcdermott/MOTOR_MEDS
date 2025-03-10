@@ -1,6 +1,6 @@
 Metadata-Version: 2.2
 Name: MOTOR-MEDS
-Version: 0.1.dev1+g80ffd5d.d20250307
+Version: 0.1.dev2+gbbfbba0.d20250310
 Summary: A MEDS & MEDS-DEV compliant package for training MOTOR style models.
 Author-email: Matthew McDermott <mattmcdermott8@gmail.com>
 Project-URL: Homepage, https://github.com/mmcdermott/MOTOR_MEDS
@@ -24,6 +24,11 @@ Requires-Dist: pytest-cov; extra == "tests"
 Requires-Dist: meds_testing_helpers; extra == "tests"
 
 # MOTOR MEDS
+
+> [!WARNING]
+> This code is not yet viable; FEMR requires an older version of MEDS which is not compatible with MEDS-DEV.
+
+
 A MEDS / MEDS-DEV compatible runner for the MOTOR model. To use the MOTOR model, you need to follow the
 following steps:
 
@@ -38,7 +43,7 @@ following steps:
 ## Step 1: Installation
 ```bash
 pip install motor-meds
-pip install git+https://github.com/som-shahlab/femr@mimic_tutorial
+pip install git+https://github.com/som-shahlab/femr@meds_v3
 ```
 
 ## Step 2: Download the ATHENA files
@@ -61,8 +66,39 @@ the original zip file) and should contain a collection of `.csv`, `.jar`, `.bat`
 original `.zip` file in it.
 
 ## Step 3. Pre-process the data
+Designate a directory to store the MEDS-Reader converted data. Call it `$MEDS_READER_DIR`. Then
+
 ```bash
-meds_reader_convert $RAW_DATASET_DIR $PREPROCESSED_DIR
+meds_reader_convert $RAW_DATASET_DIR $MEDS_READER_DIR
 ```
 
 ## Step 4. Pre-train MOTOR
+
+Designate a directory to store the processed pre-training data. Call it `$PROCESSED_PRETRAINING_DATA_DIR`.
+Then
+
+```bash
+python -u -m femr.omop_meds_tutorial.prepare_motor \
+  --pretraining_data $PROCESSED_PRETRAINING_DATA_DIR \
+  --athena_path $ATHENA_DOWNLOAD_DIR \
+  --meds_reader $MEDS_READER_DIR
+
+python -u -m femr.omop_meds_tutorial.pretrain_motor \
+  --pretraining_data $PROCESSED_PRETRAINING_DATA_DIR \
+  --meds_reader $MEDS_READER_DIR
+```
+
+## Step 5. Fine-tune MOTOR
+???
+
+This trains a logistic regression model over MOTOR embeddings; it doesn't fine-tune the whole model. It also
+requires you to copy a file manually in a step not specified here.
+```bash
+python -u -m femr.omop_meds_tutorial.generate_motor_features \ 
+  --pretraining_data $PROCESSED_PRETRAINING_DATA_DIR \
+  --meds_reader $MEDS_READER_DIR
+
+python -u -m femr.omop_meds_tutorial.finetune_motor \
+  --pretraining_data $PROCESSED_PRETRAINING_DATA_DIR \
+  --meds_reader $MEDS_READER_DIR
+```
